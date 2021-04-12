@@ -22,7 +22,7 @@
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
   </p>
 
-  <button @click="count++">count is: {{ count }}</button>
+  <button @click="add">count is: {{ count }}</button>
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
@@ -30,7 +30,10 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import { ref, defineComponent, computed } from 'vue'
+import {
+  useStore,
+} from 'vuex'
 export default defineComponent({
   name: 'HelloWorld',
   props: {
@@ -40,13 +43,18 @@ export default defineComponent({
     }
   },
   setup: () => {
-    const count = ref(0)
-    return { count }
+    const store = useStore()
+    const count = computed(() => store.state.test)
+    const add = () => {
+      console.log('commit')
+      store.commit('setTest', 1)
+    }
+    return { count, add }
   }
 })
 </script>
 
-<style scoped>
+<style scoped lang="less">
 a {
   color: #42b983;
 }
@@ -60,6 +68,6 @@ code {
   background-color: #eee;
   padding: 2px 4px;
   border-radius: 4px;
-  color: #304455;
+  color: @primary;
 }
 </style>
