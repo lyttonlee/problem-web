@@ -2,12 +2,39 @@
   <div class="login">
     <div class="login-content">
       <h2>BUG collector</h2>
-      <el-button type="primary" round>submit</el-button>
+      <el-input v-model="username"></el-input>
+      <el-input type="password" v-model="password"></el-input>
+      <el-button type="primary" @click="doLogin" round>submit</el-button>
     </div>
   </div>
 </template>
-<script setup lang="ts">
-  // ..
+<script lang="ts">
+import {
+  defineComponent,
+  reactive,
+  toRefs
+} from 'vue'
+import {
+  useStore
+} from 'vuex'
+import { LoginParam } from '../../interface/requestInterface'
+export default defineComponent({
+  setup () {
+    const store = useStore()
+    // ..
+    const user: LoginParam = reactive({
+      username: '',
+      password: ''
+    })
+    function doLogin () {
+      store.dispatch('login', user)
+    }
+    return {
+      ...toRefs(user),
+      doLogin
+    }
+  }
+})
 </script>
 <style lang="less" scoped>
 .login {

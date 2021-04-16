@@ -16,21 +16,18 @@ import {
   useRouter
 } from 'vue-router'
 import {
-  computed,
-  reactive,
-  defineComponent,
-  
+  defineComponent
 } from 'vue'
-const renderRoutes = useRouter().getRoutes().find((route) => route.path === '/')
-const msg = 'haha'
-// export default defineComponent({
-//   setup () {
-//     const renderRoutes = useRouter().getRoutes().find((route) => route.path === '/')
-//     console.log(renderRoutes)
-//     return {
-//       renderRoutes
-//     }
-//   }
-// })
+// const renderRoutes = useRouter().getRoutes().find((route) => route.path === '/')
+// const msg = 'haha'
+export default defineComponent({
+  setup () {
+    const renderRoutes = useRouter().getRoutes().find((route) => route.path === '/')
+    console.log(renderRoutes)
+    return {
+      renderRoutes
+    }
+  }
+})
 
 </script>
