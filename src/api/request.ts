@@ -1,21 +1,15 @@
 import axios, { AxiosError } from 'axios'
 import {
-  useStore
-} from 'vuex'
-import {
-  useRouter
-} from 'vue-router'
-import {
   ElNotification
 } from 'element-plus'
-
-const store = useStore()
-
-const router = useRouter()
+import {
+  store
+} from '../store'
+import router from '../router'
 
 const request = axios.create({
   baseURL: '/',
-  timeout: 3000
+  timeout: 30000
 })
 
 const err = (error: AxiosError) => {
@@ -27,7 +21,7 @@ const err = (error: AxiosError) => {
         type: 'error',
         message: '鉴权失败,请重新登录!'
       })
-      router.push('/login')
+      // router.push('/login')
     }
   } else {
     if (error.message && error.message.includes('timeout')) {
@@ -48,7 +42,7 @@ const err = (error: AxiosError) => {
 request.interceptors.request.use((config) => {
   const token = store.state.token || localStorage.getItem('token')
   if (token) {
-    config.headers.Authorization = token
+    config.headers.token = token
   }
   config.headers['Content-Type'] = 'application/json;charset=UTF-8'
   return config

@@ -1,3 +1,5 @@
+import { ElNotification } from 'element-plus';
+import { store } from './../store/index';
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
@@ -33,9 +35,22 @@ const router = createRouter({
     },
     {
       path: '/login',
+      name: '登录',
       component: () => import('../views/login/Login.vue')
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.auth === true && !store.state.token) {
+    router.push('/login')
+    ElNotification({
+      type: 'error',
+      message: '请先进行登录！'
+    })
+  } else {
+    next()
+  }
 })
 
 export default router

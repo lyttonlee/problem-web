@@ -18,9 +18,10 @@ import {
   useStore
 } from 'vuex'
 import { LoginParam } from '../../interface/requestInterface'
+import { key } from '../../store'
 export default defineComponent({
   setup () {
-    const store = useStore()
+    const store = useStore(key)
     // ..
     const user: LoginParam = reactive({
       username: '',

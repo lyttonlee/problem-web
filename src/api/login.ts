@@ -3,9 +3,9 @@ import {
 } from './request'
 import {
   LoginParam,
-  ResponseType
+  LoginResponseType
 } from '../interface/requestInterface'
 
-export const userLogin = (param: LoginParam): Promise<ResponseType> => {
+export const userLogin = (param: LoginParam): Promise<LoginResponseType> => {
   return request.post('/api/login', param)
 }
