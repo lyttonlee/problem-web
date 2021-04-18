@@ -23,9 +23,12 @@ export class EventHub {
     }
   }
 
-  public $off (eventName: string) {
+  public $off (eventName: string, fn: Function) {
     if (this.events.hasOwnProperty(eventName)) {
-      delete this.events[eventName]
+      const index = this.events[eventName].findIndex((f) => f === fn)
+      if (index !== -1) {
+        this.events[eventName].splice(index, 1)
+      }
     }
   }
 }
