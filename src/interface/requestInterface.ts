@@ -1,12 +1,16 @@
 // created by lytton
+export interface Pagination {
+  pageSize: number,
+  currentPage: number,
+  total?: number
+}
 export interface BugQueryInterface {
-  id: number,
+  projectId: number,
   type?: number,
   startTime?: number,
   endTime?: number,
-  currentPage?: number,
-  pageSize?: number,
-  dim?: string
+  dim?: string,
+  pagination?: Pagination
 }
 
 export interface LoginParam {

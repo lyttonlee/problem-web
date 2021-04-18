@@ -21,7 +21,7 @@ export default defineComponent({
   setup () {
     const store = useStore(key)
     store.dispatch('getReports', {
-      id: 5
+      projectId: 5
     })
     const reports = computed(() => store.state.reports)
     console.log(reports)
