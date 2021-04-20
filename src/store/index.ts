@@ -9,7 +9,7 @@ import {
 } from 'vue'
 import { userLogin } from '../api/login'
 import { LoginParam } from '../interface/requestInterface'
-import { SET_USER, SET_TOKEN, SET_REPORTS } from './types/type'
+import { SET_USER, SET_TOKEN, SET_REPORTS, SET_REPORTS_COUNT } from './types/type'
 import router from '../router'
 import { ElNotification } from 'element-plus'
 import { queryReports } from '../api/report'
@@ -17,7 +17,8 @@ import { queryReports } from '../api/report'
 export interface State {
   token: string | null,
   user: UserType | null,
-  reports: ReportType[]
+  reports: ReportType[],
+  reportsCount: number
 }
 
 export const key: InjectionKey<Store<State>> = Symbol()
@@ -29,7 +30,8 @@ export const store = createStore<State>({
       username: ''
     } || JSON.parse(localStorage.getItem('user') || ''),
     token: '' || localStorage.getItem('token'),
-    reports: []
+    reports: [],
+    reportsCount: 0
   },
   mutations: {
     SET_USER (state, user) {
@@ -42,6 +44,9 @@ export const store = createStore<State>({
     },
     SET_REPORTS (state, reports) {
       state.reports = reports
+    },
+    SET_REPORTS_COUNT (state, count) {
+      state.reportsCount = count
     }
   },
   actions: {
@@ -64,7 +69,8 @@ export const store = createStore<State>({
       const { code, result, desc } = await queryReports(params)
       // return new Promise()
       if (code === 0) {
-        commit(SET_REPORTS, result)
+        commit(SET_REPORTS, result.rows)
+        commit(SET_REPORTS_COUNT, result.count)
       } else {
         ElNotification({
           type: 'error',

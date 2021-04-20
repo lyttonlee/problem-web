@@ -19,9 +19,7 @@ import {
 } from 'vue'
 export default defineComponent({
   setup () {
-    return {
-      
-    }
+    return {}
   }
 })
 

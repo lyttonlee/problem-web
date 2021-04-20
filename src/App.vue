@@ -1,6 +1,4 @@
 <template>
-  <div>haha</div>
-  <el-button type="primary">btn</el-button>
   <router-view />
 </template>
 

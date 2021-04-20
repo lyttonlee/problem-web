@@ -10,7 +10,8 @@ export interface BugQueryInterface {
   startTime?: number,
   endTime?: number,
   dim?: string,
-  pagination?: Pagination
+  // pagination?: Pagination
+  currentPage: number
 }
 
 export interface LoginParam {
@@ -55,5 +56,8 @@ export interface LoginResponseType extends BaseResponseType {
 }
 
 export interface ReportResponseType extends BaseResponseType {
-  result: ReportType[]
+  result: {
+    count: number,
+    rows: ReportType[]
+  }
 }
