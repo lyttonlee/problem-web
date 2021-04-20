@@ -1,5 +1,5 @@
 <template>
-  <div>BUG</div>
+  <div>IPD系统开发运行错误收集</div>
   <el-table :data="reports">
     <el-table-column label="错误类型" prop="type"></el-table-column>
     <el-table-column label="错误详细信息" type="expand">
@@ -12,7 +12,7 @@
     <el-table-column label="错误页面" prop="pageName"></el-table-column>
     <el-table-column label="页面路径" prop="pagePath"></el-table-column>
     <el-table-column label="发生时间" prop="timestamp" :formatter="(row) => dayjs(row.timestamp).format('YYYY-MM-DD HH:mm:ss')"></el-table-column>
-    <el-table-column label="客户端地址" prop="clientHost"></el-table-column>
+    <el-table-column label="IP地址" prop="clientHost"></el-table-column>
     <el-table-column label="浏览器版本" prop="brower"></el-table-column>
   </el-table>
   <el-pagination

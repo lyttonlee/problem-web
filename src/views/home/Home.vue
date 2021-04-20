@@ -1,10 +1,10 @@
 <template>
   <div class="page">
-    <div class="side">
+    <!-- <div class="side">
       <template v-for="(route, index) in $router.getRoutes().find((route) => route.path === '/')?.children" :key="route.path">
         <router-link :to="route.path">{{route.name}}</router-link>
       </template>
-    </div>
+    </div> -->
     <div class="main">
       <router-view />
     </div>

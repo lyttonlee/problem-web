@@ -1,5 +1,5 @@
-import { ElNotification } from 'element-plus';
-import { store } from './../store/index';
+import { ElNotification } from 'element-plus'
+import { store } from './../store/index'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
