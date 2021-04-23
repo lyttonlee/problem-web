@@ -11,7 +11,11 @@
     <el-table-column label="产生阶段" prop="extra"></el-table-column>
     <el-table-column label="错误页面" prop="pageName"></el-table-column>
     <el-table-column label="页面路径" prop="pagePath"></el-table-column>
-    <el-table-column label="发生时间" prop="timestamp" :formatter="(row) => dayjs(row.timestamp).format('YYYY-MM-DD HH:mm:ss')"></el-table-column>
+    <el-table-column label="发生时间">
+      <template #default="scope">
+        <div>{{formatTime(scope.row.timestamp)}}</div>
+      </template>
+    </el-table-column>
     <el-table-column label="IP地址" prop="clientHost"></el-table-column>
     <el-table-column label="浏览器版本" prop="brower"></el-table-column>
   </el-table>
@@ -42,7 +46,7 @@ export default defineComponent({
     })
     const reports = computed(() => store.state.reports)
     const total = computed(() => store.state.reportsCount)
-    console.log(reports)
+    // console.log(reports)
     const onPageChange = (page: number) => {
       console.log(page)
       store.dispatch('getReports', {
@@ -50,11 +54,14 @@ export default defineComponent({
         currentPage: page
       })
     }
+    const formatTime = (time: number) => {
+      return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+    }
     return {
       reports,
       total,
       onPageChange,
-      dayjs
+      formatTime
     }
   }
 })
