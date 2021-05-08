@@ -30,6 +30,14 @@ const router = createRouter({
             auth: true
           },
           component: () => import('../views/doc/Doc.vue')
+        },
+        {
+          path: '/chart',
+          name: '图表',
+          meta: {
+            auth: true
+          },
+          component: () => import('../views/chart/Chart.vue')
         }
       ]
     },
